@@ -14,7 +14,12 @@ public class MkdirCommand implements InterfaceCommand{
                 System.out.println("Директория " + path[1] + " успешно создана");
             }
         } catch (SecurityException exception) {
-            System.out.println(exception.getMessage()); // обработать корректно, не просто сообщение
+            System.err.println("Ошибка безопасности: Нет прав для создания директории.");
+            System.err.println("Подробности: " + exception.getMessage()); // обработать корректно, не просто сообщение
+        }
+        catch (Exception e){
+            System.err.println("Неожиданная ошибка при создании директории: " + e.getClass().getSimpleName());
+            System.err.println("Сообщение: " + e.getMessage());
         }
         return currentPath;
     }
