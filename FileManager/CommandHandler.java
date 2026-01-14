@@ -1,4 +1,3 @@
-import java.io.File;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,23 +23,24 @@ public class CommandHandler {
 
 
     public Path executeCommand(String commandName, Path currentPath, String[] path) {
-        InterfaceCommand command = commands.get(commandName.toLowerCase());
-        Path resultPath=null;
+        String commandNameToLowerCase = commandName.toLowerCase();
+        InterfaceCommand command = commands.get(commandNameToLowerCase);
+        Path resultPath = null;
         if (command != null) {
-            boolean requiresPath = commandName.equals("cd") ||
-                    commandName.equals("mkdir") ||
-                    commandName.equals("touch")||
-                    commandName.equals("getsize");
+            boolean requiresPath = commandNameToLowerCase.equals("cd") ||
+                    commandNameToLowerCase.equals("mkdir") ||
+                    commandNameToLowerCase.equals("touch") ||
+                    commandNameToLowerCase.equals("getsize");
 
             if (requiresPath) {
                 if (path.length <= 1 || path[1] == null || path[1].trim().isEmpty()) {
-                    System.out.println("Введено неверное значение пути для команды: " + commandName);
+                    System.out.println("Введено неверное значение пути для команды: " + commandNameToLowerCase);
                     return null; // или другое значение по умолчанию
                 }
             }
-            resultPath=command.execute(path, currentPath);
+            resultPath = command.execute(path, currentPath);
         } else {
-            System.out.println("Неизвестная команда: " + commandName);
+            System.out.println("Неизвестная команда: " + commandNameToLowerCase);
         }
 
         return resultPath;

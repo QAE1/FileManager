@@ -8,8 +8,8 @@ public class LsCommand implements InterfaceCommand {
 
     @Override
     public Path execute(String[] path, Path currentPath) {
-        if (currentPath == null) { // заменить на .isEmpty() или .equals("")ТЕПЕРЬ сравниваю с null
-            Path currentWorkingDirectory = Paths.get("").toAbsolutePath(); // использовать Path currentPath ГОТОВО
+        if (currentPath == null) {
+            Path currentWorkingDirectory = Paths.get("").toAbsolutePath();
             currentPath = Path.of(currentWorkingDirectory.toUri());
             System.out.println(currentWorkingDirectory);
             printListOfFiles(String.valueOf(currentWorkingDirectory));
@@ -32,7 +32,8 @@ public class LsCommand implements InterfaceCommand {
                     }
                 }
             } catch (Exception e) {
-
+                System.out.println("Произошла ошибка при выводе списка файлов");
+                e.printStackTrace();//Как разберусь с логером, планирую переписать
             }
         }
     }
