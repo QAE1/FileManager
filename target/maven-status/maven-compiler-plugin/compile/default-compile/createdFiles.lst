@@ -1,0 +1,12 @@
+LsCommand.class
+HelpCommand.class
+MkdirCommand.class
+CommandHandler.class
+InterfaceCommand.class
+ExitCommand.class
+FileManagerApp.class
+PwdCommand.class
+GetSizeCommand.class
+TouchCommand.class
+ConsoleController.class
+CdCommand.class
